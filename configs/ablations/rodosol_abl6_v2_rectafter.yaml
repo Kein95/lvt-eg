@@ -1,0 +1,44 @@
+# Ablation Table VI, row 6 "Synthetic v2": dp 0.2, synth v2, edge, Rect. after
+# RodoSol recipe (48x192). Paper reports 97.83 (2 runs).
+run_name: rodosol_abl6_v2_rectafter
+seed: 42
+
+dataset:
+  key: rodosol
+  chars: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  num_classes: 37
+  img_h: 48
+  img_w: 192
+  hr_h: 64
+  hr_w: 256
+  synth_policy: v2            # three-level, 4x expansion
+
+model:
+  arch: lvt_eg
+  use_stn: true
+  drop_path: 0.2
+  use_pos_embed: true
+  use_edge: true
+  stn_order: rect_after
+
+loss:
+  ctc_weight: 1.0
+  edge_l1_weight: 0.1
+
+train:
+  epochs: 50
+  batch_size: 64
+  optimizer: adamw
+  weight_decay: 0.02
+  scheduler: onecycle
+  max_lr: 3.0e-4
+  pct_start: 0.3
+  amp: true
+  ema_decay: 0.99
+  grad_clip: 5.0
+  patience: 15
+  ema_warmup_epochs: 10
+  early_stop_metric: val_plate_rr
+
+eval:
+  metric: plate_rr

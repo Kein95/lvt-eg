@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtualenv / uv (uv.lock is committed for reproducibility)
+.venv/
+venv/
+.uv/
+
+# Env
+.env
+.env.local
+
+# Data + checkpoints (heavy)
+data/*/
+!data/datahub/
+data/*.zip
+checkpoints/
+checkpoints_*/
+results/runs/
+results/*.pth
+*.pth
+*.tar
+*.zip
+
+# Notebooks bookkeeping
+.ipynb_checkpoints/
+
+# IDE / tooling caches
+.vscode/
+.idea/
+.claude/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+wandb/
+
+# Coverage
+.coverage
+htmlcov/

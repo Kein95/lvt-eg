@@ -1,0 +1,46 @@
+# LVT-EG on LP-2025 (Taiwan, ~67K plates)
+# Paper Table I: 13,613 train / 3,413 val / 17,116 test, 37 chars
+# Batch size 200 = recipe used to produce paper results (Colab A100 40GB).
+# Lower to 64 if GPU VRAM is limited.
+run_name: lvt_eg_lp2025
+seed: 42
+
+dataset:
+  key: lp2025
+  chars: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-"   # 37 incl. hyphen
+  num_classes: 38                                   # 37 + 1 blank
+  img_h: 48
+  img_w: 192
+  hr_h: 64
+  hr_w: 256
+  synth_policy: v2
+  protocol: real_train
+
+model:
+  arch: lvt_eg
+  use_stn: true
+  drop_path: 0.2
+  use_pos_embed: true
+
+loss:
+  ctc_weight: 1.0
+  edge_l1_weight: 0.1
+
+train:
+  epochs: 50
+  batch_size: 200               # paper recipe (A100 40GB); lower to 64 if VRAM limited
+  optimizer: adamw
+  weight_decay: 0.02
+  scheduler: onecycle
+  max_lr: 3.0e-4
+  pct_start: 0.3
+  amp: true
+  ema_decay: 0.99
+  grad_clip: 5.0
+  patience: 15                 # notebook LVT_v65a: PATIENCE=15
+  ema_warmup_epochs: 10        # epochs=50 → warmup=10 (paper LP-2025 recipe)
+  early_stop_metric: val_plate_rr
+
+eval:
+  metric: plate_rr
+  also_report_char_acc: true

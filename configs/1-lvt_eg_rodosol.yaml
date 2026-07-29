@@ -1,0 +1,42 @@
+# LVT-EG on RodoSol-ALPR (Brazil, 20K)
+# Paper Sec impl: 48x192, lr=3e-4, synth=v2, dp=0.2
+run_name: lvt_eg_rodosol
+seed: 42
+
+dataset:
+  key: rodosol
+  chars: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  num_classes: 37            # 36 chars + 1 CTC blank
+  img_h: 48
+  img_w: 192
+  hr_h: 64                   # paper Sec 3.2: HR ref 64x256, then resampled
+  hr_w: 256
+  synth_policy: v2
+
+model:
+  arch: lvt_eg
+  use_stn: true
+  drop_path: 0.2
+  use_pos_embed: true       
+
+loss:
+  ctc_weight: 1.0
+  edge_l1_weight: 0.1        # paper Eq. (2): lambda = 0.1
+
+train:
+  epochs: 50
+  batch_size: 64
+  optimizer: adamw
+  weight_decay: 0.02
+  scheduler: onecycle
+  max_lr: 3.0e-4
+  pct_start: 0.3
+  amp: true
+  ema_decay: 0.99
+  grad_clip: 5.0
+  patience: 15
+  ema_warmup_epochs: 10        # epochs=50 → warmup=10
+  early_stop_metric: val_plate_rr
+
+eval:
+  metric: plate_rr

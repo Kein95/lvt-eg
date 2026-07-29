@@ -1,0 +1,45 @@
+# Ablation Table VI, row 7 "Synthetic v2 + STN-first, no edge": dp 0.2, synth v2, NO edge
+# RGB-only 3-channel model (no imaginator, CTC-only loss). Paper reports 97.51 (3 runs).
+# Row 8 (full model, edge on) = configs/1-lvt_eg_rodosol.yaml.
+run_name: rodosol_abl7_v2_noedge_stnfirst
+seed: 42
+
+dataset:
+  key: rodosol
+  chars: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  num_classes: 37
+  img_h: 48
+  img_w: 192
+  hr_h: 64
+  hr_w: 256
+  synth_policy: v2
+
+model:
+  arch: lvt_eg
+  use_stn: true
+  drop_path: 0.2
+  use_pos_embed: true
+  use_edge: false             # no-edge ablation: 3-channel encoder, no imaginator
+  stn_order: stn_first
+
+loss:
+  ctc_weight: 1.0
+  edge_l1_weight: 0.1         # ignored when use_edge=false (no edge term)
+
+train:
+  epochs: 50
+  batch_size: 64
+  optimizer: adamw
+  weight_decay: 0.02
+  scheduler: onecycle
+  max_lr: 3.0e-4
+  pct_start: 0.3
+  amp: true
+  ema_decay: 0.99
+  grad_clip: 5.0
+  patience: 15
+  ema_warmup_epochs: 10
+  early_stop_metric: val_plate_rr
+
+eval:
+  metric: plate_rr

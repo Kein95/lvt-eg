@@ -1,0 +1,52 @@
+# Cross-domain: train RodoSol -> evaluate LPLC ("Rodo 8K" variant)
+# Paper Table IV row: 58.75 +/- 0.61% - ONE RodoSol checkpoint evaluated over
+# the 5 distinct LPLC test partitions (std = cross-partition variance, not seeds).
+# Batch size 256 = recipe used to produce paper results (Colab A100 80GB / High-RAM).
+# Lower to 64 if GPU VRAM is limited.
+run_name: lvt_eg_rodosol2lplc_zeroshot_8k
+seed: 42
+
+# Source: RodoSol official splits (8K train, 4K val for early-stop)
+source:
+  dataset: rodosol
+  splits:
+    train: {file: split.txt, filter: training}     # 8,000
+    val:   {file: split.txt, filter: validation}   # 4,000
+  img_h: 48
+  img_w: 192
+  hr_h: 64
+  hr_w: 256
+  synth_policy: v2
+
+model:
+  arch: lvt_eg
+  use_stn: true
+  drop_path: 0.2
+  use_pos_embed: true
+
+loss:
+  ctc_weight: 1.0
+  edge_l1_weight: 0.1
+
+train:
+  epochs: 30
+  batch_size: 256               # paper recipe (A100 80GB); lower to 64 if VRAM limited
+  optimizer: adamw
+  weight_decay: 0.02
+  scheduler: onecycle
+  max_lr: 3.0e-4
+  pct_start: 0.3
+  amp: true
+  ema_decay: 0.99
+  grad_clip: 5.0
+  patience: 10
+  ema_warmup_epochs: 5         # epochs=30 → warmup=5 (epochs=50 → 10)
+  early_stop_metric: val_plate_rr
+
+target:
+  dataset: lplc
+  scenario: scen0                    # 5 folds x 2 iters = 10 test partitions
+  repeats: 2
+  min_legibility: 1                  # readable levels 1-3 (drop illegible=0)
+  metric: plate_rr
+  per_legibility_report: true        # paper Table IV: Perfect/Good/Poor

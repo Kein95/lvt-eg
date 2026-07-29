@@ -1,0 +1,18 @@
+{
+  "name": "Ukrainian LP",
+  "country": "Ukraine",
+  "size": "10K synthetic",
+  "frames": "Single",
+  "access": "public",
+  "task": "Recognition",
+  "annotation": "plate text",
+  "year": 2024,
+  "source_url": "https://zenodo.org/doi/10.5281/zenodo.13342102",
+  "notes": "DDPM synthetic. GDPR-compliant.",
+  "description": "GDPR-compliant dataset of 10K synthetic Ukrainian license plates generated via DDPM diffusion models. Designed for transfer learning to Cyrillic script recognition.",
+  "classes": 24,
+  "resolution": "416x128 px avg",
+  "license_type": "CC BY 4.0",
+  "paper_url": "https://arxiv.org/abs/2501.03374",
+  "bibtex": "@inproceedings{shpir2024pais,\n  title={License Plate Images Generation with Diffusion Models},\n  author={Shpir, Mariia and Shvai, Nadiya and Nakib, Amir},\n  booktitle={European Conference on Artificial Intelligence (ECAI)},\n  publisher={IOS Press},\n  year={2024}\n}"
+}

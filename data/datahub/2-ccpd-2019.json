@@ -1,0 +1,18 @@
+{
+  "name": "CCPD 2019",
+  "country": "China",
+  "size": "300K+",
+  "frames": "Single",
+  "access": "public",
+  "task": "Detection + Recognition",
+  "annotation": "vertices + plate text",
+  "year": 2018,
+  "source_url": "https://github.com/detectrecog/ccpd",
+  "notes": "8 difficulty subsets. MIT license.",
+  "description": "Largest Chinese license plate dataset with 250K+ images across 8 difficulty subsets (Base, Blur, Challenge, DB, FN, Rotate, Tilt, Weather). Covers comprehensive evaluation scenarios from ideal to extreme conditions.",
+  "classes": 68,
+  "resolution": "~400-500px typical, varies by subset",
+  "license_type": "MIT",
+  "paper_url": "https://arxiv.org/abs/1807.03714",
+  "bibtex": "@inproceedings{xu2018towards,\n  title={Towards End-to-End License Plate Detection and Recognition: A Large Dataset and Baseline},\n  author={Xu, Zhenbo and Yang, Wei and Meng, Ajin and Lu, Nanxue and Huang, Huan},\n  booktitle={ECCV},\n  pages={255--271},\n  year={2018}\n}"
+}

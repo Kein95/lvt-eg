@@ -1,0 +1,11 @@
+subset	lan1	lan2	lan3	mean	note
+Base	99.91	99.90	99.91	99.91	in-distribution val split (ccpd_base)
+DB	85.56	85.91	86.42	85.96	hard subset
+FN	93.24	92.77	93.34	93.12	hard subset
+Rotate	97.52	97.39	97.56	97.49	hard subset
+Tilt	95.70	95.22	95.75	95.56	hard subset
+Weather	99.35	99.35	99.31	99.34	hard subset
+Challenge	92.88	92.60	92.98	92.82	hard subset
+Blur	91.66	91.48	91.94	91.69	hard subset
+Hard-all	93.57	93.31	93.72	93.53	sample-weighted union of the 7 test-split hard subsets incl. Weather (paper headline, matches baseline protocol)
+Hard-all-ex-weather	93.16	92.88	93.33	93.12	6 subsets excl. the near-saturated Weather subset

@@ -1,0 +1,16 @@
+{
+  "_comment": "Aggregate plate-recognition-rate (%) per dataset, recomputed from results/provenance/per_run_metrics.tsv as mean +/- sample (n-1) std. Each matches the paper to the reported precision. Source = original training notebooks (per-seed) in the COLAB working set; this repo does not re-train them (gated data).",
+  "metric": "plate_recognition_rate_percent",
+  "datasets": {
+    "RodoSol": {"mean": 97.94, "std": 0.13, "n_runs": 4, "runs": [97.76, 97.91, 98.06, 98.01], "paper_target": "97.94 +/- 0.13", "matches_paper": true},
+    "CCPD": {"mean": 93.53, "std": 0.21, "n_runs": 3, "runs": [93.57, 93.31, 93.72], "metric_note": "Hard-all incl. Weather (sample-weighted union of the 7 test-split hard subsets, matching the baseline aggregate protocol); runs derived from ccpd_per_subset.tsv (6-subset test split folded with the Weather subset). The 6-subset value excl. the near-saturated Weather subset is 93.12 +/- 0.23.", "paper_target": "93.53 +/- 0.21", "matches_paper": true},
+    "Ukrainian": {"mean": 99.45, "std": 0.07, "n_runs": 2, "runs": [99.50, 99.40], "paper_target": "99.45 +/- 0.07", "matches_paper": true},
+    "LP-2025": {"mean": 84.84, "std": 0.23, "n_runs": 2, "runs": [85.00, 84.68], "paper_target": "84.84 +/- 0.23", "matches_paper": true},
+    "LPLC": {"mean": 85.30, "std": 2.17, "n_runs": 10, "metric_note": "5-fold CV x 2 iterations; per-fold + per-legibility in lplc_per_fold.tsv", "paper_target": "85.30 +/- 2.17", "matches_paper": true}
+  },
+  "zeroshot": {
+    "_comment": "RodoSol->LPLC cross-domain. Each row is ONE RodoSol checkpoint (notebook 'lan 1') evaluated on the 10 LPLC fold test sets; the 5x2 labeling reuses each of 5 distinct partitions twice, so std is cross-partition variance of a single model, not seed variance. Per-fold rows in zeroshot_per_fold.tsv.",
+    "RodoSol2LPLC_zeroshot_8k": {"mean": 58.75, "std": 0.61, "n_folds": 10, "n_distinct_partitions": 5, "paper_target": "58.75 +/- 0.61", "matches_paper": true},
+    "RodoSol2LPLC_zeroshot_12k": {"mean": 69.51, "std": 0.31, "n_folds": 10, "n_distinct_partitions": 5, "std_recompute_2dp": 0.32, "std_note": "notebook prints 0.31 from full-precision inputs; recompute from 2-dp rows gives 0.32", "paper_target": "69.51 +/- 0.31", "matches_paper": true}
+  }
+}

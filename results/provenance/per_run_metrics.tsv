@@ -1,0 +1,22 @@
+dataset	run_id	test_plate_rr	char_acc	source_notebook
+RodoSol	lan1	97.76	99.48	LVT_v61a_RodoSol_SVTRv2_Edge_0_2_synthetic_v2_STN_First_lan 1.ipynb
+RodoSol	lan2	97.91	99.51	LVT_v61a_RodoSol_SVTRv2_Edge_0_2_synthetic_v2_STN_First_lan 2.ipynb
+RodoSol	lan3	98.06	99.56	LVT_v61a_RodoSol_SVTRv2_Edge_0_2_synthetic_v2_STN_First_lan 3.ipynb
+RodoSol	lan4	98.01	99.55	LVT_v61a_RodoSol_SVTRv2_Edge_0_2_synthetic_v2_STN_First_lan 4.ipynb
+CCPD	lan1	93.16	98.27	LVT_v60a_CCPD_SVTRv2_Edge_weather_0_2_synthetic_v2_STN_First_lan 1.ipynb
+CCPD	lan2	92.88	98.10	LVT_v60a_CCPD_SVTRv2_Edge_weather_0_2_synthetic_v2_STN_First_lan 2.ipynb
+CCPD	lan3	93.33	98.25	LVT_v60a_CCPD_SVTRv2_Edge_weather_0_2_synthetic_v2_STN_First_lan 3.ipynb
+Ukrainian	lan1	99.50	99.83	LVT_v61a_Ukrainian_SVTRv2_Edge_0_2_synthetic_v2_STN_First_lan 1.ipynb
+Ukrainian	lan2	99.40	99.80	LVT_v61a_Ukrainian_SVTRv2_Edge_0_2_synthetic_v2_STN_First_lan 2.ipynb
+LP-2025	lan1	85.00	94.02	LVT_v65a_LP2025_SVTRv2_Edge_0_2_synthetic_v2_STN_First_lan 1.ipynb
+LP-2025	lan2	84.68	93.91	LVT_v65a_LP2025_SVTRv2_Edge_0_2_synthetic_v2_STN_First_lan 2.ipynb
+LPLC	f0_1	86.17	95.09	LVT_v61a_LPLC_SVTRv2_Edge_0_2_synthetic_v2_STN_First.ipynb
+LPLC	f0_2	84.80	96.00	LVT_v61a_LPLC_SVTRv2_Edge_0_2_synthetic_v2_STN_First.ipynb
+LPLC	f1_1	84.83	94.09	LVT_v61a_LPLC_SVTRv2_Edge_0_2_synthetic_v2_STN_First.ipynb
+LPLC	f1_2	87.02	96.50	LVT_v61a_LPLC_SVTRv2_Edge_0_2_synthetic_v2_STN_First.ipynb
+LPLC	f2_1	83.27	93.97	LVT_v61a_LPLC_SVTRv2_Edge_0_2_synthetic_v2_STN_First.ipynb
+LPLC	f2_2	82.34	92.97	LVT_v61a_LPLC_SVTRv2_Edge_0_2_synthetic_v2_STN_First.ipynb
+LPLC	f3_1	88.54	97.05	LVT_v61a_LPLC_SVTRv2_Edge_0_2_synthetic_v2_STN_First.ipynb
+LPLC	f3_2	82.91	93.13	LVT_v61a_LPLC_SVTRv2_Edge_0_2_synthetic_v2_STN_First.ipynb
+LPLC	f4_1	88.26	96.32	LVT_v61a_LPLC_SVTRv2_Edge_0_2_synthetic_v2_STN_First.ipynb
+LPLC	f4_2	84.81	94.53	LVT_v61a_LPLC_SVTRv2_Edge_0_2_synthetic_v2_STN_First.ipynb

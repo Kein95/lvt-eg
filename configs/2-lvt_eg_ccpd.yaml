@@ -1,0 +1,62 @@
+# LVT-EG on CCPD 2019 (China, 300K+, v2019 protocol)
+# Paper Sec impl: 32x128, lr=5e-4 with lower wd, synth=v2, dp=0.2
+# CCPD is the OUTLIER on multiple axes - kept at original recipe values:
+#   - batch=512 (others 64), wd=1e-4 (others 0.02), ema=0.999 (others 0.99),
+#     grad_clip=1.0 (others 5.0), lr=5e-4 (others 3e-4).
+#   - Total params ~20.12M (vs 23.58M for default 48x192) - lighter only
+#     because the input grid is smaller (32x128).
+run_name: lvt_eg_ccpd
+seed: 42
+
+dataset:
+  key: ccpd2019
+  # 68 classes = 67 unique (33 provinces + 24 alphabets + 10 digits, after
+  # dedup) + 1 CTC blank. Authoritative list in src/lvt_eg/data/ccpd.py.
+  chars: null                # populated by parser
+  num_classes: 68
+  img_h: 32
+  img_w: 128
+  hr_h: 64
+  hr_w: 256
+  synth_policy: v2
+  train_aug: geometric       # CCPD notebook get_train_transforms (Affine/Perspective/Rotate/ChannelShuffle/CoarseDropout)
+  synth_aug: geometric       # CCPD re-applies the geometric aug on synthetic views
+  protocol: v2019            # paper Sec 4.1: Laroca 2023 fair split
+  # v2019 protocol uses pre-built manifests:
+  splits:
+    train: splits/train.txt
+    val:   splits/val.txt
+    test:  splits/test.txt
+  # 8 official subset names (used for per-subset reporting at test time):
+  subsets: [base, blur, challenge, db, fn, rotate, tilt, weather]
+
+model:
+  arch: lvt_eg
+  use_stn: true
+  drop_path: 0.2
+  use_pos_embed: false       # CCPD: pos embed disabled
+  legacy_conv_mixer: true    # CCPD (v60a) trained with grouped-conv ConvMixer, no BN -> ~20.12M
+
+loss:
+  ctc_weight: 1.0
+  edge_l1_weight: 0.1
+
+train:
+  epochs: 30
+  batch_size: 512            # CCPD-specific
+  optimizer: adamw
+  weight_decay: 1.0e-4       # CCPD-specific
+  scheduler: onecycle
+  max_lr: 5.0e-4             # CCPD-specific
+  pct_start: 0.3
+  amp: true
+  ema_decay: 0.999           # CCPD-specific
+  grad_clip: 1.0             # CCPD-specific
+  patience: 5                # CCPD-specific: as-run notebook used 5 (early-stopped at epoch 25/30)
+  ema_warmup_epochs: 5         # epochs=30 → warmup=5 (epochs=50 → 10)
+  ema_update_after_warmup: true  # CCPD notebook gates EMA accumulation to epoch > warmup
+  early_stop_metric: val_plate_rr
+
+eval:
+  metric: plate_rr
+  per_subset_report: true    # paper Table III: separate Base/DB/FN/Rotate/Tilt/Weather/Challenge/Blur

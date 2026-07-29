@@ -1,0 +1,49 @@
+# LVT-EG on Ukrainian LP (Ukraine, 10K synthetic)
+# Paper Table I: 8K synth train, 1K real val, 1K real test, 24 chars
+run_name: lvt_eg_ukrainian
+seed: 42
+
+dataset:
+  key: ukrainian
+  chars: "0123456789ABCEHIKMOPTXYZ"  # 24 chars: Cyrillic-to-Latin subset (matches notebook)
+  num_classes: 25                     # 24 chars + 1 blank
+  img_h: 48
+  img_w: 192
+  hr_h: 64
+  hr_w: 256
+  synth_policy: v2
+  train_aug: geometric       # Ukrainian notebook get_train_transforms (same op set as CCPD)
+  synth_aug: none            # Ukrainian synthetic views are normalize-only (no extra aug)
+  synth_degrade_at: hr       # degrade at HR 64x256 then resize (Ukrainian notebook); others = lr
+  splits:
+    train: synthetic
+    val:   real
+    test:  real
+
+model:
+  arch: lvt_eg
+  use_stn: true
+  drop_path: 0.2
+  use_pos_embed: true
+
+loss:
+  ctc_weight: 1.0
+  edge_l1_weight: 0.1
+
+train:
+  epochs: 30
+  batch_size: 64                     
+  optimizer: adamw
+  weight_decay: 0.02
+  scheduler: onecycle
+  max_lr: 3.0e-4
+  pct_start: 0.3
+  amp: true
+  ema_decay: 0.99
+  grad_clip: 5.0
+  patience: 10
+  ema_warmup_epochs: 5         # epochs=30 → warmup=5 (epochs=50 → 10)
+  early_stop_metric: val_plate_rr
+
+eval:
+  metric: plate_rr

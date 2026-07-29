@@ -1,0 +1,18 @@
+{
+  "name": "RodoSol-ALPR",
+  "country": "Brazil",
+  "size": "20K",
+  "frames": "Single",
+  "access": "license",
+  "task": "Detection + Recognition",
+  "annotation": "4 corners + plate text",
+  "year": 2022,
+  "source_url": "https://github.com/raysonlaroca/rodosol-alpr-dataset",
+  "notes": "Highway toll. Mercosul format.",
+  "description": "Real Brazilian toll highway dataset (RodoSol concession). 20K images captured 24/7. First cross-generalization benchmark with Mercosur format.",
+  "classes": 36,
+  "resolution": "1280x720 px",
+  "license_type": "Academic Non-Commercial",
+  "paper_url": "https://arxiv.org/abs/2201.00267",
+  "bibtex": "@inproceedings{laroca2022rodosol,\n  title={On the Cross-Dataset Generalization in License Plate Recognition},\n  author={Laroca, Rayson and Cardoso, Everton V. and Lucio, Diego Rafael and Estevam, Valter and Menotti, David},\n  booktitle={VISAPP},\n  pages={166--178},\n  year={2022}\n}"
+}

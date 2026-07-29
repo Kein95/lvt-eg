@@ -1,0 +1,18 @@
+{
+  "name": "LPLC",
+  "country": "Brazil",
+  "size": "12,687 plates",
+  "frames": "Single",
+  "access": "license",
+  "task": "Legibility + Recognition",
+  "annotation": "4 legibility classes + plate text",
+  "year": 2025,
+  "source_url": "https://github.com/lmlwojcik/lplc-dataset",
+  "notes": "4 legibility levels.",
+  "description": "License Plate Legibility Classification dataset. 12.7K plates across 4 readability levels (Perfect/Good/Poor/Illegible). Novel task: legibility prediction prior to OCR.",
+  "classes": 36,
+  "resolution": "~150-400px typical",
+  "license_type": "Academic Non-Commercial",
+  "paper_url": "https://arxiv.org/abs/2508.18425",
+  "bibtex": "@article{wojcik2025lplc,\n  title={{LPLC}: A Dataset for License Plate Legibility Classification},\n  author={L. {Wojcik} and G. E. {Lima} and V. {Nascimento} and E. {Nascimento Jr.} and R. {Laroca} and D. {Menotti}},\n  year={2025},\n  journal={Conference on Graphics, Patterns and Images (SIBGRAPI)},\n  pages={1-6},\n  doi={10.1109/SIBGRAPI67909.2025.11223367},\n  issn={1530-1834}\n}"
+}
