@@ -317,18 +317,19 @@ lvt-eg/
 If you find this work useful, please cite:
 
 ```bibtex
-@inproceedings{kienho2026lvteg,
-  title     = {{LVT-EG}: Edge-Guided License Plate Recognition via Learned Visual Tactility},
-  author    = {Kien Ho Trung and Truong-Binh Duong},
-  booktitle = {2026 International Conference on Multimedia Analysis and Pattern Recognition (MAPR)},
-  year      = {2026},
-  month     = aug,
-  pages     = {97--102},
-  doi       = {10.1109/MAPR72750.2026.11685754},
-}
+@INPROCEEDINGS{11685754,
+  author={Trung, Kien Ho and Duong, Truong-Binh},
+  booktitle={2026 International Conference on Multimedia Analysis and Pattern Recognition (MAPR)},
+  title={LVT-EG: Edge-Guided License Plate Recognition via Learned Visual Tactility},
+  year={2026},
+  volume={},
+  number={},
+  pages={97-102},
+  keywords={Licenses;Plating;Training;Crops;Modeling;Nuclear facility regulation;Printing;License plate recognition;Learning (artificial intelligence);Superresolution;License plate recognition;scene text recognition;edge-guided learning;synthetic degradation;structural representation},
+  doi={10.1109/MAPR72750.2026.11685754}}
 ```
 
-Presented at MAPR 2026, 13-14 Aug. 2026. Published on IEEE Xplore: [https://doi.org/10.1109/MAPR72750.2026.11685754](https://doi.org/10.1109/MAPR72750.2026.11685754)
+Presented at MAPR 2026, 13-14 Aug. 2026. Published in IEEE Xplore on 17 Sep 2026: [https://doi.org/10.1109/MAPR72750.2026.11685754](https://doi.org/10.1109/MAPR72750.2026.11685754)
 
 When reporting dataset-specific results, cite the original dataset papers. BibTeX entries are embedded in [`data/datahub/`](data/datahub/).
 
